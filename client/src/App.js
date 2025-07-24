@@ -3,7 +3,7 @@ import Peer from "peerjs";
 import { io } from "socket.io-client";
 import "./App.css";
 
-const socket = io("https://your-render-backend.onrender.com"); // update URL
+const socket = io("https://movie-app-9u7a.onrender.com");
 
 export default function App() {
   const [room, setRoom] = useState("");
