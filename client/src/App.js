@@ -21,7 +21,7 @@ export default function App() {
   const localStreamRef = useRef();
 
   useEffect(() => {
-    const peer = new Peer(undefined, { host:"movie-app-9u7a.onrender.com", port:443, path:"/peerjs", secure:true });
+    const peer = new Peer(undefined, { host:"movie-app-9u7a.onrender.com", port:5000, path:"/peerjs", secure:true });
     peer.on("open", id => {
       peerRef.current = peer;
     });
