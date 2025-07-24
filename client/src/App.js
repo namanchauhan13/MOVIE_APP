@@ -37,10 +37,20 @@ export default function App() {
   }, []);
 
   const joinRoom = () => {
-    const peer = peerRef.current;
-    const id = peer.id;
-    socket.emit("join-room", { room, password, peerId:id });
-    socket.on("joined", ({ success, message }) => {
+  const peer = new Peer(undefined, {
+  host: 'movie-app-9u7a.onrender.com',
+  port: 443,
+  path: '/peerjs',
+  secure: true
+});
+
+peer.on("open", (id) => {
+  console.log("Peer connected with ID:", id);
+  
+  // Now safe to emit to socket or join room
+  socket.emit("join-room", roomId, id, userName);
+});;
+ socket.on("joined", ({ success, message }) => {
       if(success) {
         setJoined(true);
         navigator.mediaDevices.getUserMedia({video:true,audio:true}).then(stream => {
